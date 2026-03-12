@@ -1,0 +1,21 @@
+name: CI Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    # 关键点：这里指定使用 self-hosted
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run a test script
+        run: |
+          echo "Hello from DSW Runner!"
+          echo "Current directory is $(pwd)"
+          # 这里可以写你的测试命令，比如 python test.py
