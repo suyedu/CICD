@@ -1,21 +1,18 @@
-name: CI Test
+name: My CI Pipeline
 
+# 关键配置在这里
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: [ "main" ]  # 只有当有人推送到 main 分支时才触发
 
 jobs:
   build:
-    # 关键点：这里指定使用 self-hosted
-    runs-on: self-hosted
-
+    runs-on: self-hosted  # 运行在你的 DSW 服务器上
     steps:
       - uses: actions/checkout@v4
-
-      - name: Run a test script
+      
+      - name: Run Tests
         run: |
-          echo "Hello from DSW Runner!"
-          echo "Current directory is $(pwd)"
-          # 这里可以写你的测试命令，比如 python test.py
+          echo "开始运行测试..."
+          python /mnt/workspace/fangxinlei.fxl/ci_test.py
+          # 这里写你的测试命令，比如 python test.py
